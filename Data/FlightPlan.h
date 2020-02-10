@@ -15,27 +15,31 @@ private:
     string _cruising_level;
     string _destination;
     string _revision;
-    char _flight_rules;
-    int _departure_time;
-    int _actual_departure_time;
-    int _eet_hours;
-    int _eet_minutes;
-    int _endurance_hours;
-    int _endurance_minutes;
+    string _flight_rules;
+    string _departure_time;
+    string _actual_departure_time;
+    string _eet_hours;
+    string _eet_minutes;
+    string _endurance_hours;
+    string _endurance_minutes;
     string _alternate_aerodrome;
     string _other_info;
     string _route;
     string _alternative_aerodrome_2;
     char _type_of_flight;
-    int _persons_on_board;
+    string _persons_on_board;
 public:
 
     //Empty Constructor
-    FlightPlan(){}
+    FlightPlan(){
+        _eet_hours = '-';
+        _eet_minutes = '-';
+        _endurance_hours = '-';
+        _endurance_minutes = '-';
+    }
 
     void flightInfo(vector<string> words);
     void toString();
 };
-
 
 #endif //IVAO_PROJECT_FLIGHTPLAN_H

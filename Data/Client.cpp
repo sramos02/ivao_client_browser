@@ -9,39 +9,41 @@ bool Client::found(const string callsign) {
 //Print all information about a client
 void Client::toString() {
     cout << "--------User information---------\n";
-    cout << "Callsign:" << setw(10) << _callsign << endl;
-    cout << "VID:" << setw(16) << _vid << endl;
-    cout << "Name:" << setw(15) << _name << endl;
+    cout << "Callsign:" << setw(14) << _callsign << endl;
+    cout << "VID:" << setw(20) << _vid << endl;
+    cout << "Name:" << setw(19) << _name << endl;
 
     if (_client_type == my_enums::clientType::PILOT) {
-        cout << "Type:" << setw(15) << "Pilot\n";
+        cout << "Type:" << setw(19) << "Pilot\n";
         cout << "\n--------Flight details--------\n";
-        cout << "Aircraft Type:" << setw(2) << _plane << endl;
+        cout << "Aircraft Type:" << setw(8) << _plane << endl;
         cout << "Altitude:" << setw(11) << _altitude << " ft AMSL\n";
         cout << "Ground Speed:" << setw(5) << _gnd_speed << " kts\n";
-        cout << "Transponder:" << setw(7) << _transponder << endl;
+        cout << "Transponder:" << setw(9) << _transponder << endl;
 
         cout << "\n--------Flight plan--------\n";
         _flt_plan.toString();
 
     }
+
     else if (_client_type == my_enums::clientType::ATC){
         cout << "Type    : ATC\n\n";
         cout << "\n--------Position details--------\n";
-        cout << "TODO" << endl;
         //TODO ATC details
     }
-    else cout << "Type    : Follow Me Car\n";
-    cout << "TODO" << endl;
-    //TODO Other information
+    else {
+        cout << "Type    : Follow Me Car\n";
+    }
+
+    //TODO Print other information
 }
 
 //Create a PILOT with the information recieved
 void Client::createPilot(vector<string> atributes){
     _client_type = my_enums::clientType::PILOT;
-    _latitude = stof(atributes[5]);
-    _longitude = stof(atributes[6]);
-    _altitude = stof(atributes[7]);
+    if(atributes[5] != "") _latitude = stof(atributes[5]);
+    if(atributes[6] != "") _longitude = stof(atributes[6]);
+    if(atributes[7] != "")_altitude = stof(atributes[7]);
     _gnd_speed = atributes[8];
     _server = atributes[14];
     _protocol = atributes[15];

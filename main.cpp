@@ -1,5 +1,6 @@
 #include <fstream>
 #include <sstream>
+#include <algorithm>
 #include "Client.h"
 
 //Program methods
@@ -25,8 +26,9 @@ int main() {
 void getCallsign(string & callsign) {
     cout << "Search for a Callsign: ";
     cin >> callsign;
-    for(int i= 0; i < callsign.length(); i++) toupper(callsign[i]);
 
+    //Make it upperCase
+    transform(callsign.begin(), callsign.end(),callsign.begin(), ::toupper);
 }
 
 //Search for a callsign in the file text file provided and print information about client id exists
@@ -58,7 +60,7 @@ void searchEngine(ifstream & file, const string callsign) {
 
     file.close();
     if(found) clt.toString();
-    cout << "\nThis VID do not match with any online user.\n";
+    else cout << "\nThis VID do not match with any online user.\n";
 }
 
 //Update the file txt from webpage
