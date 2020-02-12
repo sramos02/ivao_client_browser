@@ -17,7 +17,7 @@ private:
     string _server;
     string _protocol;
     string _combined_rating;
-    unsigned long long  _connection_time;
+    string _connection_time;
     string _software_name;
     string _software_version;
     my_enums::administrativeVersion _administrative_version;
@@ -26,7 +26,7 @@ private:
     string _frecuency;
     string _frecuency_cont;
     my_enums::facilities _facility_type;
-    float _visual_range;
+    string _visual_range;
     string _atis;
     string _atis_time;
     my_enums::atcVersion _atc_version;
@@ -43,6 +43,9 @@ private:
 
 public:
     //Constructor
+    
+    Client(){}
+
     Client(string callsign, string vid, string name){
         _callsign = callsign;
         _vid = vid;
