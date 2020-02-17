@@ -11,9 +11,9 @@ private:
     string _vid;
     string _name;
     my_enums::clientType _client_type;
-    float _latitude;
-    float _longitude;
-    int _altitude;
+    string _latitude;
+    string _longitude;
+    string _altitude;
     string _server;
     string _protocol;
     string _combined_rating;
@@ -42,10 +42,10 @@ private:
     string _plane;
 
 public:
-    //Constructor
-    
+    //Empty Constructor
     Client(){}
 
+    //Cronstructor
     Client(string callsign, string vid, string name){
         _callsign = callsign;
         _vid = vid;
