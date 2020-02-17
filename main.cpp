@@ -1,7 +1,11 @@
+//Sergio Ramos Mesa
+//VID: 606948
+//17-2-2020
+
 #include <fstream>
 #include <sstream>
 #include <algorithm>
-#include "Data/Client.h"
+#include "Client.h"
 
 //Program methods
 void updateFile();
@@ -19,6 +23,7 @@ int main() {
     getCallsign(callsign);
     searchEngine(file, callsign);
 
+    system("PAUSE"); //for windows systems
     return 0;
 }
 
@@ -47,8 +52,8 @@ void searchEngine(ifstream & file, const string callsign) {
     }
 
     //Read Clients
-     Client clt = Client();
-     bool found = false, end = false;
+    Client clt = Client();
+    bool found = false, end = false;
 
     while (!found && !end){
         getline(file, line);
@@ -66,29 +71,12 @@ void searchEngine(ifstream & file, const string callsign) {
 }
 
 //Update the file txt from webpage
-//TODO update system
 void updateFile() {
-    /*
-    string url = "http://api.ivao.aero/getdata/whazzup/whazzup.txt";
-    CURL * curl;
-    CURLcode result;
+    cout << "Updating file\n";
+    cout << "-------------------------------------------------------------------------------\n";
 
-    curl = curl_easy_init();
-
-
-    char buf[BUFSIZ];
-    size_t size;
-
-    FILE * source = fopen("http://api.ivao.aero/getdata/whazzup/whazzup.txt", "rb");
-    FILE * output = fopen("cmake-build.debug/file.txt", "wb");
-
-    while (size = fread(buf, 1, BUFSIZ, source)) {
-        fwrite(buf, 1, size, output);
-    }
-
-    fclose(source);
-    fclose(output);
-    */
+    system("curl -o status.txt http://api.ivao.aero/getdata/whazzup/whazzup.txt");
+    cout << "-------------------------------------------------------------------------------\n\n";
 }
 
 //Recieve a client information and split it by ":" returning it if exists in the file
