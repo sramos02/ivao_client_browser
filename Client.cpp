@@ -17,12 +17,12 @@ void Client::toString() {
     cout << setw(15) << "Type";
 
     switch (_client_type) {
-    case 0: cout << "Pilot" << endl;
-        break;
-    case 1: cout << "ATC" << endl;
-        break;
-    case 2: cout << "Follow Me Car" << endl;
-        break;
+        case 0: cout << "Pilot" << endl;
+            break;
+        case 1: cout << "ATC" << endl;
+            break;
+        case 2: cout << "Follow Me Car" << endl;
+            break;
     }
 
     if (_client_type == my_enums::clientType::PILOT || _client_type == my_enums::clientType::FOLME) {
@@ -50,16 +50,12 @@ void Client::toString() {
 //Create a PILOT with the information recieved
 void Client::createPilot(vector<string> atributes){
 
-    if (_callsign == "VLG3197") {
-        cout << "";
-    }
+    if (atributes[3] == "PILOT") _client_type = my_enums::clientType::PILOT;
+    else _client_type = my_enums::clientType::FOLME;
 
-    if (atributes[3] == "PILOT") { _client_type = my_enums::clientType::PILOT; }
-    else { _client_type = my_enums::clientType::FOLME; }
-      
-    _latitude = stof(atributes[5]);
-    _longitude = stof(atributes[6]);
-    _altitude = stof(atributes[7]);
+    _latitude = atributes[5];
+    _longitude = atributes[6];
+    _altitude = atributes[7];
     _gnd_speed = atributes[8];
     _server = atributes[14];
     _protocol = atributes[15];
@@ -94,13 +90,23 @@ void Client::createATC(vector<string> atributes){
     //atribute 17
     _facility_type = my_enums::facilities(stoi(atributes[18]));
     _visual_range = atributes[19];
-    _atis = atributes[35];
-    _atis_time = atributes[36];
-    _connection_time = atributes[37];
-    _software_name = atributes[38];
-    _software_version = atributes[39];
-    _administrative_version = my_enums::administrativeVersion(stoi(atributes[40]));
-    _atc_version = my_enums::atcVersion(stoi(atributes[41]));
+
+    if (atributes[40] != "" && atributes[41] != "") {
+        //_atis = atributes[35];
+        _atis_time = atributes[36];
+        _connection_time = atributes[37];
+        _software_name = atributes[38];
+        _software_version = atributes[39];
+        _administrative_version = my_enums::administrativeVersion(stoi(atributes[40]));
+        _atc_version = my_enums::atcVersion(stoi(atributes[41]));
+    }
+    else {
+        _connection_time = atributes[35];
+        _software_name = atributes[36];
+        _software_version = atributes[37];
+        _administrative_version = my_enums::administrativeVersion(stoi(atributes[38]));
+        _atc_version = my_enums::atcVersion(stoi(atributes[39]));
+    }
 }
 
 //Create a FOLLOW ME with the information recieved
