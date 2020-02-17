@@ -2,6 +2,7 @@
 
 using namespace std;
 
+//Show all information from a FlightPlan
 void FlightPlan::toString() {
     if (_departure == "" && _destination == "") {
         cout << "No flight plan sent\n";
@@ -22,6 +23,7 @@ void FlightPlan::toString() {
     }
 }
 
+//Fill a flight plan from vector of words
 void FlightPlan::flightInfo(vector<string> words){
     _aircraft = words[9]; //With other information
     _cruising_speed = words[10];
