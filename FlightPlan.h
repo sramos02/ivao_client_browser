@@ -30,7 +30,7 @@ private:
     string _persons_on_board;
 public:
 
-    //Empty Constructor
+    //Constructor
     FlightPlan(){
         _eet_hours = '-';
         _eet_minutes = '-';
@@ -38,6 +38,7 @@ public:
         _endurance_minutes = '-';
     }
 
+    //Class methods
     void flightInfo(vector<string> words);
     void toString();
 };
