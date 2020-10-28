@@ -12,8 +12,10 @@
     <list default="true" id="5d09cd7c-f133-4a5e-b4b3-cad1401d5d95" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Data/Client.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Client.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Client.h" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Client.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Data/FlightPlan.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Data/FlightPlan.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Data/FlightPlan.h" beforeDir="false" afterPath="$PROJECT_DIR$/Data/FlightPlan.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/enum.h" beforeDir="false" afterPath="$PROJECT_DIR$/Data/enum.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -40,8 +42,14 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/main.cpp" />
+    <property name="settings.editor.selected.configurable" value="CPPToolchains" />
   </component>
   <component name="RunManager">
+    <configuration name="Unnamed" type="CMakeRunConfiguration" factoryName="Application" nameIsGenerated="true" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" RUN_PATH="$PROJECT_DIR$/main.cpp" EXPLICIT_BUILD_TARGET_NAME="all">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" RUN_PATH="$PROJECT_DIR$/main.cpp" EXPLICIT_BUILD_TARGET_NAME="all">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -74,7 +82,11 @@
       <workItem from="1581273426731" duration="39000" />
       <workItem from="1581284112995" duration="149000" />
       <workItem from="1581323335241" duration="9528000" />
-      <workItem from="1581367785674" duration="662000" />
+      <workItem from="1581367785674" duration="747000" />
+      <workItem from="1581458192005" duration="602000" />
+      <workItem from="1581886567460" duration="271000" />
+      <workItem from="1581887945577" duration="1000" />
+      <workItem from="1583345019248" duration="218000" />
     </task>
     <servers />
   </component>
@@ -82,25 +94,34 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2194" y="159" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1581273458259">
-      <screen x="1920" y="112" width="1366" height="738" />
-    </state>
-    <state x="414" y="179" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.112.1366.738/0.0.1920.1050@0.0.1920.1050" timestamp="1581273281923" />
-    <state x="2194" y="159" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.112.1366.738/0.0.1920.1050@1920.112.1366.738" timestamp="1581273458259" />
-    <state x="573" y="33" key="CommitChangelistDialog2" timestamp="1581358755367">
+    <state x="414" y="179" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1581886837796">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="573" y="33" key="CommitChangelistDialog2/1920.112.1366.738/0.0.1920.1050@0.0.1920.1050" timestamp="1581358755367" />
+    <state x="414" y="179" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.112.1366.738/0.0.1920.1050@0.0.1920.1050" timestamp="1581886837796" />
+    <state x="2194" y="159" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.112.1366.738/0.0.1920.1050@1920.112.1366.738" timestamp="1581273458259" />
+    <state x="573" y="33" key="CommitChangelistDialog2" timestamp="1581886758065">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="573" y="33" key="CommitChangelistDialog2/1920.112.1366.738/0.0.1920.1050@0.0.1920.1050" timestamp="1581886758065" />
+    <state x="694" y="272" key="EnvironmentVariablesDialog" timestamp="1581886827581">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="694" y="272" key="EnvironmentVariablesDialog/1920.112.1366.738/0.0.1920.1050@0.0.1920.1050" timestamp="1581886827581" />
     <state x="976" y="353" key="FileChooserDialogImpl" timestamp="1581340956740">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="976" y="353" key="FileChooserDialogImpl/1920.112.1366.738/0.0.1920.1050@0.0.1920.1050" timestamp="1581340956740" />
     <state x="2614" y="359" key="FileChooserDialogImpl/1920.112.1366.738/0.0.1920.1050@1920.112.1366.738" timestamp="1581273452411" />
-    <state x="505" y="273" key="com.intellij.ide.util.TipDialog" timestamp="1581367798628">
+    <state x="461" y="167" key="SettingsEditor" timestamp="1581886754244">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="505" y="273" key="com.intellij.ide.util.TipDialog/1920.112.1366.738/0.0.1920.1050@0.0.1920.1050" timestamp="1581367798628" />
+    <state x="461" y="167" key="SettingsEditor/1920.112.1366.738/0.0.1920.1050@0.0.1920.1050" timestamp="1581886754244" />
+    <state x="505" y="273" key="com.intellij.ide.util.TipDialog" timestamp="1583345144523">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="505" y="273" key="com.intellij.ide.util.TipDialog/1920.112.1366.738/0.0.1920.1050@0.0.1920.1050" timestamp="1581886571517" />
     <state x="2279" y="304" key="com.intellij.ide.util.TipDialog/1920.112.1366.738/0.0.1920.1050@1920.112.1366.738" timestamp="1581323337145" />
+    <state x="505" y="273" key="com.intellij.ide.util.TipDialog/1920.160.1366.738/0.0.1920.1050@0.0.1920.1050" timestamp="1583345144523" />
     <state x="616" y="243" key="run.anything.popup" timestamp="1581273144648">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>

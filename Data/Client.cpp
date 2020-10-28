@@ -9,17 +9,28 @@ bool Client::found(const string callsign) {
 //Print all information about a client
 void Client::toString() {
     cout << "--------User information---------\n";
-    cout << "Callsign:" << setw(14) << _callsign << endl;
-    cout << "VID:" << setw(20) << _vid << endl;
-    cout << "Name:" << setw(19) << _name << endl;
+    cout << setfill(' ') << left;
 
-    if (_client_type == my_enums::clientType::PILOT) {
-        cout << "Type:" << setw(19) << "Pilot\n";
+    cout << setw(15)  << "Callsign: " << _callsign << endl;
+    cout << setw(15) <<  "VID: " <<  _vid << endl;
+    cout << setw(15) << "Name: " << _name << endl;
+    cout << setw(15) << "Type";
+
+    switch (_client_type) {
+        case 0: cout << "Pilot" << endl;
+            break;
+        case 1: cout << "ATC" << endl;
+            break;
+        case 2: cout << "Follow Me Car" << endl;
+            break;
+    }
+
+    if (_client_type == my_enums::clientType::PILOT || _client_type == my_enums::clientType::FOLME) {
         cout << "\n--------Flight details--------\n";
-        cout << "Aircraft Type:" << setw(8) << _plane << endl;
-        cout << "Altitude:" << setw(11) << _altitude << " ft AMSL\n";
-        cout << "Ground Speed:" << setw(5) << _gnd_speed << " kts\n";
-        cout << "Transponder:" << setw(9) << _transponder << endl;
+        cout << setw(15) << "Aircraft Type:" << _plane << endl;
+        cout << setw(15) << "Altitude:" <<  _altitude << " ft AMSL\n";
+        cout << setw(15) << "Ground Speed:" << _gnd_speed << " kts\n";
+        cout << setw(15) << "Transponder:" << _transponder << endl;
 
         cout << "\n--------Flight plan--------\n";
         _flt_plan.toString();
@@ -27,78 +38,82 @@ void Client::toString() {
     }
 
     else if (_client_type == my_enums::clientType::ATC){
-        cout << "Type    : ATC\n\n";
         cout << "\n--------Position details--------\n";
-        //TODO ATC details
-    }
-    else {
-        cout << "Type    : Follow Me Car\n";
+        cout << setw(15) << "Position: "  << my_enums::facilities(_facility_type) << endl;
+        cout << setw(15) << "Frecuency: " << _frecuency << endl;
+        cout << setw(15) << "ATIS: "  << _atis << endl;
     }
 
-    //TODO Print other information
+    //Here may print other information like server, protocol...
 }
 
 //Create a PILOT with the information recieved
 void Client::createPilot(vector<string> atributes){
-    _client_type = my_enums::clientType::PILOT;
-    if(atributes[5] != "") _latitude = stof(atributes[5]);
-    if(atributes[6] != "") _longitude = stof(atributes[6]);
-    if(atributes[7] != "")_altitude = stof(atributes[7]);
+
+    if (_callsign == "VLG3197") {
+        cout << "";
+    }
+
+    if (atributes[3] == "PILOT") { _client_type = my_enums::clientType::PILOT; }
+    else { _client_type = my_enums::clientType::FOLME; }
+
+    _latitude = stof(atributes[5]);
+    _longitude = stof(atributes[6]);
+    _altitude = stof(atributes[7]);
     _gnd_speed = atributes[8];
     _server = atributes[14];
     _protocol = atributes[15];
     _combined_rating = atributes[16];
     _transponder = atributes[17];
+    _heading = atributes[36];
     _connection_time = stoll(atributes[37]);
     _software_name = atributes[38];
     _software_version = atributes[39];
     _administrative_version = my_enums::administrativeVersion(stoi(atributes[40]));
-    _pilot_version = my_enums::pilotVersion (stoi(atributes[41]));;
-    _heading = atributes[36];
+    _pilot_version = my_enums::pilotVersion (stoi(atributes[41]));
+    //atribute 42
     (stoi(atributes[46]) == 1)? _on_gnd = true: _on_gnd = false;
     _simulator = my_enums::simulator(stoi(atributes[47]));
-    _plane = atributes[39];
-
     FlightPlan flt_plan = FlightPlan();
     flt_plan.flightInfo(atributes);
     _flt_plan = flt_plan;
+    //_plane
 }
 
 //Create a ATC with the information recieved
 void Client::createATC(vector<string> atributes){
     _client_type = my_enums::clientType::ATC;
     _frecuency = atributes[4];
-    _frecuency_cont = atributes[5];
-    _latitude = stof(atributes[6]);
-    _longitude = stof(atributes[7]);
-    _altitude = stof(atributes[8]);
-    _server = atributes[9];
-    _protocol = atributes[10];
-    _combined_rating = atributes[11];
-    //_facility_type = atributes[12];
-    _visual_range = stof(atributes[13]);
-    _atis = atributes[14];
-    _atis_time = atributes[15];
-    _connection_time = stol(atributes[16]);
-    _software_name = atributes[17];
-    _software_version = atributes[18];
-    //_administrative_version = atributes[19];
-    //_client_version = atributes[20];
+    _latitude = stof(atributes[5]);
+    _longitude = stof(atributes[6]);
+    _altitude = stof(atributes[7]);
+    _frecuency_cont = atributes[8];
+    _server = atributes[14];
+    _protocol = atributes[15];
+    _combined_rating = atributes[16];
+    //atribute 17
+    _facility_type = my_enums::facilities(stoi(atributes[18]));
+    _visual_range = atributes[19];
+    _atis = atributes[35];
+    _atis_time = atributes[36];
+    _connection_time = atributes[37];
+    _software_name = atributes[38];
+    _software_version = atributes[39];
+    _administrative_version = my_enums::administrativeVersion(stoi(atributes[40]));
+    _atc_version = my_enums::atcVersion(stoi(atributes[41]));
 }
 
 //Create a FOLLOW ME with the information recieved
 void Client::createObserver(vector<string> atributes){
-    _client_type = my_enums::clientType::FOLME;
     _latitude = stof(atributes[5]);
     _longitude = stof(atributes[6]);
     _altitude = stof(atributes[7]);
-    _server = atributes[8];
-    _protocol = atributes[9];
-    _combined_rating = atributes[10];
-    _connection_time = stol(atributes[11]);
-    _software_name = atributes[12];
-    _software_version = atributes[13];
-    //_administrative_version = atributes[14];
-    //_client_version = atributes[15];
+    _server = atributes[14];
+    _protocol = atributes[15];
+    _combined_rating = atributes[16];
+    _connection_time = atributes[37];
+    _software_name = atributes[38];
+    _software_version = atributes[39];
+    _administrative_version = my_enums::administrativeVersion(stoi(atributes[40]));
+    //_client_version = atributes[41];
 }
-
